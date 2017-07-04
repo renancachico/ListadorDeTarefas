@@ -1,0 +1,13 @@
+<ion-menu [content]="rootIonNav">
+    <ion-content>
+        <ion-list>
+            <ion-list-header>
+                Menu
+            </ion-list-header>
+            <button menuClose ion-item *ngFor="let menuSection of menuSections" (click)="navToComponent(menuSection.component)">
+                {{menuSection.title | translate}}
+            </button>
+        </ion-list>  
+    </ion-content>
+</ion-menu>
+<ion-nav #rootIonNav [root]="rootPage"></ion-nav>

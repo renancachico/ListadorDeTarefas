@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>{{tarefa.titulo != undefined ? tarefa.titulo : 'Minha tarefa'}}</ion-title>
+    <ion-buttons end>
+     <button ion-button icon-right (click)="logout()">Sair<ion-icon name="ios-log-out"></ion-icon></button>
+   </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="tarefaForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>Titulo</ion-label>
+            <ion-input formControlName="titulo" name="titulo" [(ngModel)]="tarefa.titulo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>Descrição</ion-label>
+            <ion-input formControlName="descricao" name="descricao" [(ngModel)]="tarefa.descricao"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>Status</ion-label>
+            <ion-select formControlName="estadoTarefa" name="state" [(ngModel)]="tarefa.state">
+              <ion-option *ngFor="let state of lovProvider.getTarefaStates()" [value]="state">
+                {{getEstadoValue(state)}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!--><ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>Teste</ion-label>
+            <ion-select [(ngModel)]="tarefa.descricao">
+              <ion-option  [value]="tarefa">{{tarefa.descricao}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>-->
+      
+      <ion-row>
+        <ion-col>
+          <button ion-button full clear (click)="salvarTarefa()" [disabled]="tarefaForm.invalid">
+            Salvar tarefa
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
